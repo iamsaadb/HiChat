@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>App.css</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../";
+    var thisFile = "src/App.css";
+    var defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>App.css</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="css">
+@<span class="hljs-keyword">import</span> url(<span class="hljs-string">'https://fonts.googleapis.com/css?family=Press+Start+2P'</span>);
+
+* {
+  <span class="hljs-attribute">box-sizing</span>: border-box;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+}
+<span class="hljs-selector-tag">body</span> {
+    <span class="hljs-attribute">font-family</span>: <span class="hljs-string">"Press Start 2P"</span>;
+}
+
+<span class="hljs-selector-tag">input</span><span class="hljs-selector-attr">[type=text]</span>, <span class="hljs-selector-tag">select</span>, <span class="hljs-selector-tag">textarea</span> {
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">85%</span>;
+    
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">12px</span>;
+    <span class="hljs-attribute">margin</span>: <span class="hljs-number">3px</span>;
+    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#ccc</span>;
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">4px</span>;
+    <span class="hljs-attribute">resize</span>: vertical;
+  }
+
+<span class="hljs-selector-id">#container</span> {
+    <span class="hljs-attribute">display</span>: grid;
+    <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">1</span>fr <span class="hljs-number">6</span>fr;
+    <span class="hljs-attribute">grid-template-areas</span>: <span class="hljs-string">"sidebar main"</span>;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100vw</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">100vh</span>;
+}
+<span class="hljs-selector-id">#main</span> {
+    <span class="hljs-attribute">grid-area</span>: main;
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#e6ecf7</span>; 
+}
+
+<span class="hljs-selector-id">#new-message</span> {
+    <span class="hljs-attribute">position</span>: fixed;
+    <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span>;
+    <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">0px</span>;
+    <span class="hljs-attribute">border-top</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#3f3f3f</span>; 
+    <span class="hljs-comment">/* background-color: burlywood  */</span>
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#e6ecf7</span>; 
+}
+<span class="hljs-selector-id">#messages-list</span> {
+    <span class="hljs-comment">/* border-top: 1px solid #3f3f3f; */</span>
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">5px</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+}
+
+<span class="hljs-selector-id">#message-container</span> {
+
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-string">'white'</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-string">'85%'</span>;
+    <span class="hljs-attribute">width</span>: <span class="hljs-string">'97%'</span>;
+    <span class="hljs-attribute">margin</span>: <span class="hljs-number">5</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">15</span>;
+    <span class="hljs-attribute">border</span>: <span class="hljs-number">1</span>;
+}
+				  
+
+<span class="hljs-selector-id">#sidebar</span> {
+    <span class="hljs-attribute">grid-area</span>: sidebar;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">5px</span>;
+    <span class="hljs-attribute">border-right</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#3f3f3f</span>;
+    <span class="hljs-comment">/* border-top: 1px solid #3f3f3f; */</span>
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+    <span class="hljs-attribute">background-color</span>:white
+}
+
+
+
+
+
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>.ChatPage {
+text-align: center;
+align-items: center;
+flex-direction: column;
+display: flex;
+}</p>
+<p>.App-logo {
+animation: App-logo-spin infinite 20s linear;
+height: 40vmin;
+pointer-events: none;
+}</p>
+<p>.App-header {
+background-color: #282c34;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+font-size: calc(10px + 2vmin);
+color: white;
+}</p>
+<p>.App-link {
+color: #61dafb;
+}</p>
+<p>@keyframes App-logo-spin {
+from {
+transform: rotate(0deg);
+}
+to {
+transform: rotate(360deg);
+}
+}</p>
+<p>.message-area {
+height: 200px;
+padding: 20px;
+background: #e8e8e8;
+overflow-y: scroll;
+width: 400px;
+}</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="css"></pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

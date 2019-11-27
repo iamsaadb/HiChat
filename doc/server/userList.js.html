@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>userList.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../";
+    var thisFile = "server/userList.js";
+    var defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>userList.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">const</span> bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">'body-parser'</span>);
+<span class="hljs-keyword">const</span> { MongoClient } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mongodb'</span>);
+
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>mongo init:</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"><span class="hljs-keyword">const</span> url = <span class="hljs-string">'mongodb://localhost:27018'</span>;
+<span class="hljs-keyword">const</span> mongoClient = <span class="hljs-keyword">new</span> MongoClient(url);
+
+mongoClient.connect(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (err) <span class="hljs-built_in">console</span>.log(err);
+    <span class="hljs-keyword">const</span> db = mongoClient.db(<span class="hljs-string">'Chat-App'</span>);
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3"></a>
+</div>
+<p>move app logic in here</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">    <span class="hljs-keyword">const</span> app = express();
+    app.use(bodyParser.json());
+    
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4"></a>
+</div>
+<p>same as a get endpoint, but says post instead.</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">    app.post(<span class="hljs-string">'/users/postUser'</span>, (req, res) =&gt; {
+        <span class="hljs-built_in">console</span>.log(req.body);
+        db.collection(<span class="hljs-string">'users'</span>).insertOne(req.body)
+            .then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'user insert worked'</span>))
+            .catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(e))
+       res.send(<span class="hljs-string">'doesnt matter'</span>);
+    });
+
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5"></a>
+</div>
+<p>same as a get endpoint, but says post instead.</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">    app.get(<span class="hljs-string">'/users/getUsers'</span>, (req, res) =&gt; {
+        db.collection(<span class="hljs-string">'users'</span>).find({}).toArray()
+        .then(<span class="hljs-function">(<span class="hljs-params">docs</span>) =&gt;</span> {
+          <span class="hljs-built_in">console</span>.log(docs)
+          res.send(docs);
+        })
+        .catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+          res.send(<span class="hljs-string">'Error: '</span> + e);
+        })
+    });
+    
+    app.listen(<span class="hljs-number">7000</span>);
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6"></a>
+</div>
+<p>end app logic</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">});
+
+
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

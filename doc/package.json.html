@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>package.json</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = "";
+    var thisFile = "package.json";
+    var defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>package.json</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"chat-app"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"0.1.0"</span>,
+  <span class="hljs-attr">"private"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"proxy"</span>: <span class="hljs-string">"http://localhost:4000"</span>,
+  <span class="hljs-attr">"dependencies"</span>: {
+    <span class="hljs-attr">"axios"</span>: <span class="hljs-string">"^0.18.0"</span>,
+    <span class="hljs-attr">"body-parser"</span>: <span class="hljs-string">"^1.18.3"</span>,
+    <span class="hljs-attr">"docker"</span>: <span class="hljs-string">"^1.0.0"</span>,
+    <span class="hljs-attr">"docker-compose"</span>: <span class="hljs-string">"^0.17.2"</span>,
+    <span class="hljs-attr">"express"</span>: <span class="hljs-string">"^4.16.4"</span>,
+    <span class="hljs-attr">"http-proxy"</span>: <span class="hljs-string">"^1.17.0"</span>,
+    <span class="hljs-attr">"mongo-pool"</span>: <span class="hljs-string">"^0.1.0"</span>,
+    <span class="hljs-attr">"mongodb"</span>: <span class="hljs-string">"^3.2.3"</span>,
+    <span class="hljs-attr">"react"</span>: <span class="hljs-string">"^16.8.1"</span>,
+    <span class="hljs-attr">"react-dom"</span>: <span class="hljs-string">"^16.8.1"</span>,
+    <span class="hljs-attr">"react-redux"</span>: <span class="hljs-string">"^6.0.1"</span>,
+    <span class="hljs-attr">"react-router-dom"</span>: <span class="hljs-string">"^5.0.0"</span>,
+    <span class="hljs-attr">"react-scripts"</span>: <span class="hljs-string">"2.1.5"</span>,
+    <span class="hljs-attr">"redis"</span>: <span class="hljs-string">"^2.8.0"</span>,
+    <span class="hljs-attr">"redux"</span>: <span class="hljs-string">"^4.0.1"</span>,
+    <span class="hljs-attr">"redux-devtools-extension"</span>: <span class="hljs-string">"^2.13.8"</span>,
+    <span class="hljs-attr">"redux-thunk"</span>: <span class="hljs-string">"^2.3.0"</span>,
+    <span class="hljs-attr">"semantic-ui-react"</span>: <span class="hljs-string">"^0.87.1"</span>,
+    <span class="hljs-attr">"ws"</span>: <span class="hljs-string">"^6.2.1"</span>
+  },
+  <span class="hljs-attr">"scripts"</span>: {
+    <span class="hljs-attr">"start"</span>: <span class="hljs-string">"react-scripts start"</span>,
+    <span class="hljs-attr">"build"</span>: <span class="hljs-string">"react-scripts build"</span>,
+    <span class="hljs-attr">"test"</span>: <span class="hljs-string">"react-scripts test"</span>,
+    <span class="hljs-attr">"eject"</span>: <span class="hljs-string">"react-scripts eject"</span>,
+    <span class="hljs-attr">"build-gateway"</span>: <span class="hljs-string">"docker build -f gateway.Dockerfile -t gateway . &amp;&amp; docker tag gateway tmclennan/gateway &amp;&amp; docker push tmclennan/gateway"</span>,
+    <span class="hljs-attr">"build-websocket"</span>: <span class="hljs-string">"docker build -f websocket.Dockerfile -t websocket-demo . &amp;&amp; docker tag websocket-demo tmclennan/websocket-demo &amp;&amp; docker push tmclennan/websocket-demo"</span>,
+    <span class="hljs-attr">"build-messanger"</span>: <span class="hljs-string">"docker build -f messanger.Dockerfile -t messanger-demo . &amp;&amp; docker tag messanger-demo tmclennan/messanger-demo &amp;&amp; docker push tmclennan/messanger-demo"</span>,
+    <span class="hljs-attr">"build-frontend"</span>: <span class="hljs-string">"docker build -f frontend.Dockerfile -t react-demo . &amp;&amp; docker tag react-demo tmclennan/react-demo &amp;&amp; docker push tmclennan/react-demo"</span>,
+    <span class="hljs-attr">"build-all-docker"</span>: <span class="hljs-string">""</span>,
+    <span class="hljs-attr">"deploy"</span>: <span class="hljs-string">"docker-compose -f devops/docker-compose.yml pull &amp;&amp; docker stack deploy -c devops/docker-compose.yml message-app"</span>,
+    <span class="hljs-attr">"stop"</span>: <span class="hljs-string">"docker stack remove message-app"</span>
+  },
+  <span class="hljs-attr">"eslintConfig"</span>: {
+    <span class="hljs-attr">"extends"</span>: <span class="hljs-string">"react-app"</span>
+  },
+  <span class="hljs-attr">"browserslist"</span>: [
+    <span class="hljs-string">"&gt;0.2%"</span>,
+    <span class="hljs-string">"not dead"</span>,
+    <span class="hljs-string">"not ie &lt;= 11"</span>,
+    <span class="hljs-string">"not op_mini all"</span>
+  ]
+}
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

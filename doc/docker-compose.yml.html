@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>docker-compose.yml</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = "";
+    var thisFile = "docker-compose.yml";
+    var defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>docker-compose.yml</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="yaml"><span class="hljs-attr">version:</span> <span class="hljs-string">'3.7'</span>
+<span class="hljs-attr">services:</span>
+<span class="hljs-attr">  app:</span>
+<span class="hljs-attr">    image:</span> <span class="hljs-attr">tmclennan:express-demo</span>
+<span class="hljs-attr">    ports:</span> 
+<span class="hljs-bullet">      -</span> <span class="hljs-string">"4444:3000"</span>
+<span class="hljs-attr">    deploy:</span> 
+<span class="hljs-attr">      replicas:</span> <span class="hljs-number">8</span> 
+<span class="hljs-attr">  redis:</span>
+    <span class="hljs-string">image</span> <span class="hljs-string">:</span> <span class="hljs-attr">redis:5.0.4</span>
+<span class="hljs-attr">    ports:</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">"6379:6379"</span>
+<span class="hljs-attr">    deploy:</span>
+<span class="hljs-attr">      placement:</span>
+<span class="hljs-attr">        constraints:</span> <span class="hljs-string">[node.role</span> <span class="hljs-string">==</span> <span class="hljs-string">manager]</span>
+<span class="hljs-attr">    command:</span> <span class="hljs-string">redis-server</span> <span class="hljs-bullet">--appendonly</span> <span class="hljs-literal">yes</span>
+<span class="hljs-attr">    networks:</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">webnet</span>
+<span class="hljs-attr">  visualizer:</span>
+<span class="hljs-attr">    image:</span> <span class="hljs-string">dockersamples/visualizer:stable</span>
+<span class="hljs-attr">    ports:</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">"8080:8080"</span>
+<span class="hljs-attr">    volumes:</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">"/var/run/docker.sock:/var/run/docker.sock"</span>
+<span class="hljs-attr">    deploy:</span>
+<span class="hljs-attr">      placement:</span>
+<span class="hljs-attr">        constraints:</span> <span class="hljs-string">[node.role</span> <span class="hljs-string">==</span> <span class="hljs-string">manager]</span>
+<span class="hljs-attr">    networks:</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">webnet</span>
+<span class="hljs-attr">networks:</span>
+<span class="hljs-attr">  webnet:</span>
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

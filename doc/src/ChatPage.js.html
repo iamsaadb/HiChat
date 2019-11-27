@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ChatPage.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../";
+    var thisFile = "src/ChatPage.js";
+    var defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>ChatPage.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>;
+<span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>;
+<span class="hljs-keyword">import</span> {Redirect} <span class="hljs-keyword">from</span> <span class="hljs-string">'react-router-dom'</span>;
+<span class="hljs-keyword">import</span> { updateMessages, handlTextChange, submitMessage } <span class="hljs-keyword">from</span> <span class="hljs-string">'./redux/actions/messageActions'</span>;
+<span class="hljs-keyword">import</span> { updateUserList, deleteUser} <span class="hljs-keyword">from</span> <span class="hljs-string">'./redux/actions/userActions'</span>;
+<span class="hljs-keyword">import</span> Sidebar <span class="hljs-keyword">from</span> <span class="hljs-string">"./components/Sidebar"</span>;
+<span class="hljs-keyword">import</span> MessagesList <span class="hljs-keyword">from</span> <span class="hljs-string">"./components/MessageList"</span>;
+<span class="hljs-keyword">import</span> AddMessage <span class="hljs-keyword">from</span> <span class="hljs-string">"./components/AddMessage"</span>;
+<span class="hljs-keyword">import</span> NavBar <span class="hljs-keyword">from</span> <span class="hljs-string">"./components/Navbar"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./App.css'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChatPage</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  componentDidMount() {
+    axios.get(<span class="hljs-string">'/messanger/getMessages'</span>)
+      .then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>filters out the id attribute from the database array, saves to redux store:</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">        <span class="hljs-built_in">console</span>.log(res.data);
+        <span class="hljs-keyword">const</span> resultArray = (res.data);
+        <span class="hljs-keyword">const</span> messageList = resultArray.map(<span class="hljs-function">(<span class="hljs-params">{_id, ...keepAttrs}</span>) =&gt;</span> keepAttrs);
+        <span class="hljs-keyword">this</span>.props.updateMessages(messageList);
+      })
+      
+      .catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(e);
+      });
+
+      axios.get(<span class="hljs-string">'/messanger/getUsers'</span>)
+      .then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3"></a>
+</div>
+<p>filters out the data portion from the database array, saves to redux store:</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">        <span class="hljs-keyword">const</span> resultArray = (res.data);
+        <span class="hljs-keyword">const</span> userList = resultArray.map(<span class="hljs-function">(<span class="hljs-params">{_id, ...keepAttrs}</span>) =&gt;</span> keepAttrs);
+        <span class="hljs-keyword">this</span>.props.updateUserList(userList);
+      })
+      .catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(e);
+      });
+  }
+
+  logOut = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+     <span class="hljs-keyword">this</span>.props.deleteUser(<span class="hljs-keyword">this</span>.props.user);
+     <span class="hljs-keyword">this</span>.props.setUsername(<span class="hljs-string">''</span>);
+     <span class="hljs-keyword">return</span> (
+      &lt;Redirect to="./Login"/&gt;
+     )
+  }
+
+  render() {
+     return (
+
+          &lt;div&gt;
+            &lt;NavBar logOutButton ={this.logOut}/&gt;   
+            &lt;div id="container"&gt;
+              &lt;Sidebar users={this.props.userList}/&gt;
+                 &lt;section id="main"&gt;
+                    &lt;MessagesList messages={this.props.messages} currentUser={this.props.user}/&gt;
+                    &lt;AddMessage /&gt;
+                  &lt;/section&gt;
+              &lt;/div&gt;
+          &lt;/div&gt;
+    )}}
+
+const mapStateToProps = (state) =&gt; {
+  return {
+    messages: state.messageReducer.messages,
+    text: state.messageReducer.text,
+    user: state.userReducer.currentUser,
+    userList: state.userReducer.userList,
+  };
+};
+
+const mapDispatchToProps = { updateMessages, updateUserList, handlTextChange, submitMessage, deleteUser };
+
+export default connect( // from react-redux
+  mapStateToProps,
+  mapDispatchToProps,
+)(ChatPage);
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

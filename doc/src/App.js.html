@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>App.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../";
+    var thisFile = "src/App.js";
+    var defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>App.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>;
+<span class="hljs-keyword">import</span> { updateUser, addUser, submitUser } <span class="hljs-keyword">from</span> <span class="hljs-string">'./redux/actions/userActions'</span>;
+<span class="hljs-keyword">import</span> ChatPage <span class="hljs-keyword">from</span> <span class="hljs-string">"./ChatPage"</span>;
+<span class="hljs-keyword">import</span> UsernameForm <span class="hljs-keyword">from</span> <span class="hljs-string">"./UsernameForm"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./App.css'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+
+  state = {
+     <span class="hljs-attr">username</span>: <span class="hljs-literal">null</span>,
+  }
+
+  setUsername = <span class="hljs-function">(<span class="hljs-params">username</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`setUsername: <span class="hljs-subst">${username}</span>`</span>);
+    <span class="hljs-keyword">this</span>.setState({username});
+    <span class="hljs-keyword">this</span>.props.submitUser(username);
+  }
+
+    render() {
+      <span class="hljs-keyword">return</span> (
+        &lt;div id='main app'&gt;
+        {/* If username is undefinied render the login page. Otherwise render Chat app page  */}
+        {
+          !this.state.username ?  &lt;UsernameForm setUsername={this.setUsername}/&gt; : &lt;ChatPage setUsername={this.setUsername}/&gt;
+        }
+        &lt;/div&gt;
+      );
+    }
+  }
+  
+  const mapStateToProps = (state) =&gt; {
+    return {
+      currentUser: state.userReducer.currentUser,
+    };
+  };
+  
+  const mapDispatchToProps = { updateUser, addUser, submitUser };
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(App);
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

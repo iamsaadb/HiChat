@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  app:
+    image: tmclennan:chat-application
+    ports: 
+      - "4444:3000"
+    deploy: 
+      replicas: 8 
+  redis:
+    image : redis:5.0.4
+    ports:
+      - "6379:6379"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    command: redis-server --appendonly yes
+    networks:
+      - webnet
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+networks:
+  webnet:

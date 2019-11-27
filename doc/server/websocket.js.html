@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>websocket.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../";
+    var thisFile = "server/websocket.js";
+    var defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>websocket.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"><span class="hljs-keyword">const</span> WebSocket = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ws'</span>);
+<span class="hljs-keyword">const</span> redis = <span class="hljs-built_in">require</span>(<span class="hljs-string">'redis'</span>);
+<span class="hljs-keyword">const</span> client = redis.createClient();
+<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>4 events related to websockets: need new because WebSocket is the constructor:</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"><span class="hljs-keyword">const</span> wss =  <span class="hljs-keyword">new</span> WebSocket.Server({ <span class="hljs-attr">port</span>: <span class="hljs-number">6000</span> });
+
+<span class="hljs-keyword">let</span> usercount = <span class="hljs-number">0</span>;
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3"></a>
+</div>
+<p>event handler for connection: web socket server object</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">wss.on(<span class="hljs-string">'connection'</span>, (ws) =&gt; {
+    ++usercount;
+});
+
+wss.on(<span class="hljs-string">'close'</span>, (ws) =&gt; {
+    --usercount;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Someone has left: '</span>+ usercount)
+    <span class="hljs-keyword">if</span> (usercount &lt; <span class="hljs-number">1</span>) {
+        axios.get(<span class="hljs-string">'/messanger/clearMessages'</span>)
+        .then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> { })
+        .catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(e));
+    }
+})
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4"></a>
+</div>
+<p>we want to listen to messages being broadcast</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">client.on(<span class="hljs-string">'message'</span>, (channel, message) =&gt; {
+ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`subscriber hears message <span class="hljs-subst">${message}</span>`</span>)
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5"></a>
+</div>
+<p>now we re-broadcast to all open tabs:</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"> wss.clients.forEach(<span class="hljs-function">(<span class="hljs-params">client</span>) =&gt;</span> {
+     client.send(message);
+  });
+});
+
+client.subscribe(<span class="hljs-string">'message-channel'</span>);
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

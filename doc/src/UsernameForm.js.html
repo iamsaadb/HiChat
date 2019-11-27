@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UsernameForm.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../";
+    var thisFile = "src/UsernameForm.js";
+    var defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>UsernameForm.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./UsernameForm.css'</span>;
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsernameForm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+ <span class="hljs-keyword">constructor</span>(props) {
+   <span class="hljs-keyword">super</span>(props)
+   <span class="hljs-keyword">this</span>.onSubmit = <span class="hljs-keyword">this</span>.onSubmit.bind(<span class="hljs-keyword">this</span>)
+   <span class="hljs-keyword">this</span>.onChange = <span class="hljs-keyword">this</span>.onChange.bind(<span class="hljs-keyword">this</span>)
+ }
+
+ onSubmit(e) {
+   e.preventDefault()
+   <span class="hljs-keyword">this</span>.props.setUsername(e.target.username.value);
+ }
+
+ onChange(e) {
+    <span class="hljs-keyword">this</span>.setState({ <span class="hljs-attr">username</span>: e.target.value })
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+        &lt;div className="App"&gt;
+        &lt;header className="App-header"&gt;
+        &lt;div className="widget"&gt;
+          &lt;h2&gt;Welcome to our Chat Application!&lt;/h2&gt;
+          &lt;form onSubmit={this.onSubmit}&gt;
+            &lt;input
+              type="text"
+              placeholder="Please enter a username here: "
+              id="username"
+              onChange={this.onChange}
+            /&gt;
+            &lt;input type="submit" value="Join Chat"/&gt;
+          &lt;/form&gt;
+          &lt;/div&gt;
+       &lt;/header&gt;
+     &lt;/div&gt;
+   )
+  }
+}
+
+ export default UsernameForm
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

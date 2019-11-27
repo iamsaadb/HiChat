@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>configureStore.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../";
+    var thisFile = "src/configureStore.js";
+    var defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>configureStore.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"><span class="hljs-keyword">import</span> { applyMiddleware, createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span>
+<span class="hljs-keyword">import</span> thunkMiddleware <span class="hljs-keyword">from</span> <span class="hljs-string">'redux-thunk'</span>
+<span class="hljs-keyword">import</span> { composeWithDevTools } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux-devtools-extension'</span>
+<span class="hljs-keyword">import</span> { combineReducers } <span class="hljs-keyword">from</span> <span class="hljs-string">"redux"</span>
+<span class="hljs-keyword">import</span> messageReducer <span class="hljs-keyword">from</span> <span class="hljs-string">'./redux/reducers/messageReducer'</span>;
+<span class="hljs-keyword">import</span> userReducer <span class="hljs-keyword">from</span> <span class="hljs-string">'./redux/reducers/userReducer'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">configureStore</span>(<span class="hljs-params">preloadedState</span>) </span>{
+  <span class="hljs-keyword">const</span> middlewares = [thunkMiddleware]
+  <span class="hljs-keyword">const</span> middlewareEnhancer = applyMiddleware(...middlewares)
+  <span class="hljs-keyword">const</span> enhancers = [middlewareEnhancer]
+  <span class="hljs-keyword">const</span> composedEnhancers = composeWithDevTools(...enhancers)
+  <span class="hljs-keyword">const</span> rootReducer = combineReducers({
+    messageReducer, userReducer
+  });
+  
+  <span class="hljs-keyword">const</span> store = createStore(rootReducer, preloadedState, composedEnhancers)
+
+  <span class="hljs-keyword">return</span> store
+}
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>
